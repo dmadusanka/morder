@@ -4,47 +4,45 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:MOrder/views/MATERIAL/bottomBar.dart';
 
-class mainDashBoard extends StatefulWidget {
-  final String productName;
+class MainDashBoard extends StatefulWidget {
+  final int productName;
 
-  const mainDashBoard(this.productName);
+  const MainDashBoard(this.productName);
 
   @override
-  _mainDashBoardState createState() => _mainDashBoardState();
+  _MainDashBoardState createState() => _MainDashBoardState();
 }
 
-class _mainDashBoardState extends State<mainDashBoard> {
-
-
-  List<charts.Series<Products, String>>_seriesBarData;
-  _generateData(){
-    var barData =[
-      new Products("Cookies", 19.5 , Colors.lightBlueAccent),
-      new Products("Cakes", 37.0 , Colors.orangeAccent),
-      new Products("Fruits", 49.0 , Colors.lightGreenAccent),
-      new Products("Chocolate", 67.8 , Colors.lightBlueAccent),
+class _MainDashBoardState extends State<MainDashBoard> {
+  List<charts.Series<Products, String>> _seriesBarData;
+  _generateData() {
+    var barData = [
+      new Products("Cookies", 19.5, Colors.lightBlueAccent),
+      new Products("Cakes", 37.0, Colors.orangeAccent),
+      new Products("Fruits", 49.0, Colors.lightGreenAccent),
+      new Products("Chocolate", 67.8, Colors.lightBlueAccent),
     ];
 
     _seriesBarData.add(
       charts.Series(
           data: barData,
-          domainFn: (Products products,_)=>products.Targer_v,
-          measureFn: (Products products,_)=>products.Achieved_v,
-          colorFn: (Products products,_) => charts.ColorUtil.fromDartColor(products.color_v),
+          domainFn: (Products products, _) => products.Targer_v,
+          measureFn: (Products products, _) => products.Achieved_v,
+          colorFn: (Products products, _) =>
+              charts.ColorUtil.fromDartColor(products.color_v),
           id: "Daily Income",
-          labelAccessorFn: (Products products,_)=> '${products.Achieved_v}'
-      ),
+          labelAccessorFn: (Products products, _) => '${products.Achieved_v}'),
     );
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _seriesBarData = List<charts.Series<Products, String>>();
     _generateData();
   }
 
-  Material myItems(IconData icon, String headline, int color){
+  Material myItems(IconData icon, String headline, int color) {
     return Material(
       color: Colors.white,
       elevation: 14.0,
@@ -62,11 +60,9 @@ class _mainDashBoardState extends State<mainDashBoard> {
                   Center(
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text((headline),
-                        style: TextStyle(
-                            color: Color(color),
-                            fontSize: 14.0
-                        ),
+                      child: Text(
+                        (headline),
+                        style: TextStyle(color: Color(color), fontSize: 14.0),
                       ),
                     ),
                   ),
@@ -112,36 +108,29 @@ class _mainDashBoardState extends State<mainDashBoard> {
           Container(
             // padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white
-            ),
+                borderRadius: BorderRadius.circular(10.0), color: Colors.white),
             // color: Colors.red,
-            child: Expanded(
-              child: charts.PieChart(
-                _seriesBarData,
-                animate: true,
-                animationDuration: Duration(seconds: 4),
-                behaviors: [
-                  charts.DatumLegend(
-                      outsideJustification: charts.OutsideJustification.endDrawArea,
-                      horizontalFirst: false,
-                      desiredMaxRows: 2,
-                      cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
-                      entryTextStyle: charts.TextStyleSpec(
-                          color: charts.MaterialPalette.purple.shadeDefault,
-                          fontSize: 11
-                      )
-                  )
-                ],
-                defaultRenderer: charts.ArcRendererConfig(
-                    arcWidth: 100,
-                    arcRendererDecorators: [
-                      charts.ArcLabelDecorator(
-                          labelPosition: charts.ArcLabelPosition.inside
-                      )
-                    ]
-                ),
-              ),
+            child: charts.PieChart(
+              _seriesBarData,
+              animate: true,
+              animationDuration: Duration(seconds: 4),
+              behaviors: [
+                charts.DatumLegend(
+                    outsideJustification:
+                        charts.OutsideJustification.endDrawArea,
+                    horizontalFirst: false,
+                    desiredMaxRows: 2,
+                    cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
+                    entryTextStyle: charts.TextStyleSpec(
+                        color: charts.MaterialPalette.purple.shadeDefault,
+                        fontSize: 11))
+              ],
+              defaultRenderer: charts.ArcRendererConfig(
+                  arcWidth: 100,
+                  arcRendererDecorators: [
+                    charts.ArcLabelDecorator(
+                        labelPosition: charts.ArcLabelPosition.inside)
+                  ]),
             ),
           ),
           myItems(Icons.account_balance_wallet, "BALANCE", 0XFF6D852B),
@@ -158,9 +147,7 @@ class _mainDashBoardState extends State<mainDashBoard> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
-        },
+        onPressed: () {},
         backgroundColor: Colors.orange,
         child: Icon(Icons.fastfood),
       ),
@@ -170,7 +157,7 @@ class _mainDashBoardState extends State<mainDashBoard> {
   }
 }
 
-class Products{
+class Products {
   String Targer_v;
   double Achieved_v;
   Color color_v;
