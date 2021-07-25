@@ -36,7 +36,8 @@ const AUTH0_ISSUER = 'https://$AUTH0_DOMAIN';
 void main(){
   runApp(
     MaterialApp(
-        home:splashScreen()
+        home:splashScreen(),
+      debugShowCheckedModeBanner: false,
     )
   );
 }

@@ -18,7 +18,7 @@ class _SupplierState extends State<Supplier> {
 
     var headers = {
       'X-AUTH-TOKEN':
-          'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjM1NTk4NiwiZXhwIjoxNjI2NDQyMzg2LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.Dr3utpWNJ9m7aPXgjjLPubL83Q1GgtD78hIm_yAKAfjHeO8g7LwDklSOBvfLsWsW55yP7ZXfgPNvMAlt8AoIXB1C4r8r0Zo8nJccgOfn5rvZHx8UG13HPh2_rr-zNgHMTRXzYjI7H3YkfOv0BJUikKeJ57j7quGNzykvWqoMHgS06gKgrj0wdztCofd4z9-3Cs9Z9Y7Ir7-TSRGXHZCX-aMEol3aNOGwE9QdubgBJJ3YeW5hjoJ3HQGf804quUC0r6cl5vM-7PVfrmDWo9lR4fPnkHg8HvNZr2mVvzGFrt_5qNOtuqH64_Q1kQv4Dp4HSBeenvZG1FwsbYbGkA47oQ',
+          'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNzAxNDgyMSwiZXhwIjoxNjI3MTAxMjIxLCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.RmlpNB1UlsKXAmZBzqd7yXHBxYnuw9EVTcBT_oNOPl1HnbV7Qya9v2BwYF0IvkTZk5YUphBqSf_3tTphgAQsD01XAzOgpez-QyefnDeigQTq06CLxZmjn7fWx284B9rbM1H7Gdujj0TEDCo8ET2c3acTN9u-_x-QXW4sVfeCuhLX7pDwWM7voQG_2Dsc6z1TYbVPydAbglEBxA_O7LF-_qyC1v0dPEeRuzyVel4VHe5Gs4MmhP6Vr3DDiL91ams9D5h8Eex7VTP7cDomQq9YAmUG0vy6vBFBCyDf2i0ykbnH3aL0I2VuCxPjAQ6vsANPIumqkLzW4Fmar9ThXpU5IA',
       'Content-Type': 'application/json',
       'Cookie': 'JSESSIONID=B2E911507B6EE95774EC0246B10F5F5F'
     };
@@ -65,7 +65,16 @@ class _SupplierState extends State<Supplier> {
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                     itemBuilder: (BuildContext context, int index) {
+
+                      var baseUrl = snapshot.data[index].baseUrl;
+                      var logoImage = snapshot.data[index].logoImage;
+                      var logoURL = baseUrl+"/resources/getBlob/"+logoImage;
+
                       return ListTile(
+                        //leading: Icon(Icons.account_circle, color: Colors.white,),
+                        leading: Image.network(logoURL),
+                        tileColor: Colors.amber,
+                        trailing: Icon(Icons.arrow_forward_ios, color:Colors.white,),
                         onTap: () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) {
@@ -73,7 +82,7 @@ class _SupplierState extends State<Supplier> {
                             //return Supplier();
                           }));
                         },
-                        title: Text(snapshot.data[index].name),
+                        title: Text(snapshot.data[index].name, style: TextStyle(color: Colors.black, fontSize: 20.0),),
                       );
                     },
                   ),
@@ -89,10 +98,12 @@ class _SupplierState extends State<Supplier> {
 class SupplierDetail {
   final int id;
   final String name;
+  final String baseUrl;
+  final String logoImage;
 
-  SupplierDetail({this.id, this.name});
+  SupplierDetail({this.id, this.name, this.baseUrl, this.logoImage});
 
   factory SupplierDetail.fromJson(Map<String, dynamic> json) {
-    return SupplierDetail(id: json['id'], name: json['tradingName']);
+    return SupplierDetail(id: json['id'], name: json['tradingName'], baseUrl:json['seller']['baseUrl'], logoImage:json['logoImage']);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:MOrder/views/CART/shoping_page.dart';
@@ -23,12 +24,61 @@ class _AllProductRangesState extends State<AllProductRanges> {
             if (data.hasData) {
               return Column(
                 children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(color: Colors.orange)
+                          ),
+                          height: 120,
+                          width: 160,
+                          child: Column(
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/promo.png', height: 80.0,),
+                              Text("Promotions", style: TextStyle(fontSize: 18.0, ),),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 18.0,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                              border: Border.all(color: Colors.orange)
+                          ),
+                          height: 120,
+                          width: 160,
+                          child: Column(
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/favorite.png', height: 80.0,),
+                              Text("Favorites", style: TextStyle(fontSize: 18.0, ),),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: StaggeredGridView.countBuilder(
                         crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 15,
+                        //crossAxisSpacing: 8,
                         itemBuilder: (context, index) {
+
+                          var imageIMAGE = data.data[index].categoryImage;
+                          var baseURL = 'https://demo.msalesapp.com/msales/resources/getBlob/';
+                          var imageURL = baseURL+imageIMAGE;
+
                           return GestureDetector(
                             onTap: () {
                               Navigator.of(context)
@@ -38,10 +88,25 @@ class _AllProductRangesState extends State<AllProductRanges> {
                               }));
                             },
                             child: Container(
-                              height: 100,
-                              width: 100,
-                              color: Colors.red,
-                              child: Text(data.data[index].name),
+                              margin: EdgeInsets.only(left: 10, right: 10),
+                              padding: EdgeInsets.all(15.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(color: Colors.orange)
+                              ),
+                              //child: Text(data.data[index].name),
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.network(imageURL, height: 80,),
+                                    SizedBox(height: 12,),
+                                    Text(data.data[index].name, style: TextStyle(color: Colors.black, fontSize: 16.0),),
+                                  ],
+                                )
+                              ),
                             ),
                           );
                         },
@@ -64,7 +129,7 @@ class _AllProductRangesState extends State<AllProductRanges> {
 
     var headers = {
       'Authorization':
-          'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNjM1NTk4NiwiZXhwIjoxNjI2NDQyMzg2LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.Dr3utpWNJ9m7aPXgjjLPubL83Q1GgtD78hIm_yAKAfjHeO8g7LwDklSOBvfLsWsW55yP7ZXfgPNvMAlt8AoIXB1C4r8r0Zo8nJccgOfn5rvZHx8UG13HPh2_rr-zNgHMTRXzYjI7H3YkfOv0BJUikKeJ57j7quGNzykvWqoMHgS06gKgrj0wdztCofd4z9-3Cs9Z9Y7Ir7-TSRGXHZCX-aMEol3aNOGwE9QdubgBJJ3YeW5hjoJ3HQGf804quUC0r6cl5vM-7PVfrmDWo9lR4fPnkHg8HvNZr2mVvzGFrt_5qNOtuqH64_Q1kQv4Dp4HSBeenvZG1FwsbYbGkA47oQ',
+          'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNzAxNDgyMSwiZXhwIjoxNjI3MTAxMjIxLCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.RmlpNB1UlsKXAmZBzqd7yXHBxYnuw9EVTcBT_oNOPl1HnbV7Qya9v2BwYF0IvkTZk5YUphBqSf_3tTphgAQsD01XAzOgpez-QyefnDeigQTq06CLxZmjn7fWx284B9rbM1H7Gdujj0TEDCo8ET2c3acTN9u-_x-QXW4sVfeCuhLX7pDwWM7voQG_2Dsc6z1TYbVPydAbglEBxA_O7LF-_qyC1v0dPEeRuzyVel4VHe5Gs4MmhP6Vr3DDiL91ams9D5h8Eex7VTP7cDomQq9YAmUG0vy6vBFBCyDf2i0ykbnH3aL0I2VuCxPjAQ6vsANPIumqkLzW4Fmar9ThXpU5IA',
       'Content-Type': 'application/json',
       'Cookie': 'JSESSIONID=B2E911507B6EE95774EC0246B10F5F5F',
       'BusinessId': 'partner-1'
@@ -94,10 +159,11 @@ class _AllProductRangesState extends State<AllProductRanges> {
 class ProductCategories {
   final String id;
   final String name;
+  final String categoryImage;
 
-  ProductCategories(this.id, this.name);
+  ProductCategories(this.id, this.name, this.categoryImage);
 
   factory ProductCategories.fromJson(Map<String, dynamic> json) {
-    return ProductCategories(json['id'], json['name']);
+    return ProductCategories(json['id'], json['name'], json['categoryImage']);
   }
 }

@@ -98,7 +98,7 @@ class gridCatergory extends StatelessWidget {
                 SizedBox(height: 10,),
                 Text(data.subtitle, style: TextStyle(color: Colors.orange),),
                 SizedBox(height: 10,),
-                Text(data.event, style: TextStyle(color: Colors.white54),)
+                Text(data.event, style: TextStyle(color: Colors.red),)
               ],
             ),
           );

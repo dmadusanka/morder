@@ -1,4 +1,5 @@
 import 'package:MOrder/views/CART/shoping_page.dart';
+import 'package:MOrder/views/AUTH/login.dart';
 import 'package:flutter/material.dart';
 import 'package:MOrder/views/ORDERS/todayOrders.dart';
 import 'package:MOrder/views/OUTSTANDING/outsStanding.dart';
@@ -7,6 +8,7 @@ import 'package:MOrder/views/INVOICE/invoiceSetlement.dart';
 import 'package:MOrder/views/MAKEORDERS/makeOrders.dart';
 import 'package:MOrder/views/PRODUCTS/productCategory.dart';
 import 'package:MOrder/views/CART/productRanges.dart';
+import 'package:MOrder/views/DASHBOARD/mainDashboard.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -45,7 +47,7 @@ class MainDrawer extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (_){
                     //return mainDashBoard("cat");
-                    return null;
+                    return MainDashBoard(1);
                   }
               ))
             },
@@ -72,17 +74,17 @@ class MainDrawer extends StatelessWidget {
               ))
             },
           ),
-          ListTile(
-            leading: Icon(Icons.sticky_note_2_outlined, color: Colors.orange,),
-            title: Text("Today's Oder History", style: TextStyle(fontSize: 16),),
-            onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_){
-                    return todaysOrders();
-                  }
-              ))
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.sticky_note_2_outlined, color: Colors.orange,),
+          //   title: Text("Today's Oder History", style: TextStyle(fontSize: 16),),
+          //   onTap: () => {
+          //     Navigator.of(context).push(MaterialPageRoute(
+          //         builder: (_){
+          //           return todaysOrders();
+          //         }
+          //     ))
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.monetization_on_sharp, color: Colors.orange,),
             title: Text("Outstanding",
@@ -137,11 +139,11 @@ class MainDrawer extends StatelessWidget {
             title: Text("Logout",
               style: TextStyle(fontSize: 16),),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_){
-                    return invoiceSetlement();
-                  }
-              ))
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (_){
+              //       return Login("","");
+              //     }
+              // ))
             },
           ),
         ],

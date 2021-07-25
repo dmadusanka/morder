@@ -11,7 +11,7 @@ class _makeOderState extends State<makeOder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Oders'),
+        title: Text('Orders'),
         backgroundColor: Colors.orange,
       ),
       drawer: MainDrawer(),
