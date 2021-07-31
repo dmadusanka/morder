@@ -2,7 +2,7 @@ import 'package:MOrder/models/product.dart';
 import 'package:get/state_manager.dart';
 
 class CartController extends GetxController {
-  List<Product> cartItems = List<Product>().obs;
+  List<Product> cartItems = <Product>[].obs;
   int get itemCount => cartItems.length;
   double get totalPrice =>
       cartItems.fold(0, (sum, item) => sum + item.price * item.quantity);

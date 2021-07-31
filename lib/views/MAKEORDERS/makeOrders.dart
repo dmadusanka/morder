@@ -5,6 +5,10 @@ import 'package:MOrder/views/MATERIAL/mainDrawer.dart';
 import 'package:get/get.dart';
 
 class MakeOder extends StatefulWidget {
+  final int supplierId;
+
+  MakeOder(this.supplierId);
+
   @override
   _MakeOderState createState() => _MakeOderState();
 }
@@ -57,7 +61,10 @@ class _MakeOderState extends State<MakeOder> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignaturePad(),
+                                builder: (context) => SignaturePad(
+                                    controller.cartItems,
+                                    widget.supplierId,
+                                    controller.totalPrice),
                               ),
                             );
                           },

@@ -8,7 +8,7 @@ class Product {
 
   Product(this.id, this.productName, this.price, this.productDescription,
       this.productImage,
-      {this.quantity = 0});
+      {this.quantity = 1});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(json['id'], json['name'], json['pricing'][0]['price'],

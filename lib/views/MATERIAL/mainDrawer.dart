@@ -11,6 +11,9 @@ import 'package:MOrder/views/CART/productRanges.dart';
 import 'package:MOrder/views/DASHBOARD/mainDashboard.dart';
 
 class MainDrawer extends StatelessWidget {
+  final int supplierId;
+
+  MainDrawer({this.supplierId = 0});
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -54,10 +57,11 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                //return mainDashBoard("cat");
-                return MainDashBoard(1);
-              }))
+              // Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+              //   //return mainDashBoard("cat");
+              //   return MainDashBoard(1);
+              // }))
+              Navigator.pop(context),
             },
           ),
           // ListTile(
@@ -82,7 +86,7 @@ class MainDrawer extends StatelessWidget {
             ),
             onTap: () => {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                return MakeOder();
+                return MakeOder(supplierId);
               }))
             },
           ),
@@ -148,7 +152,7 @@ class MainDrawer extends StatelessWidget {
             onTap: () => {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                 //return ShoppingPage();
-                return AllProductRanges();
+                return AllProductRanges(supplierId);
               }))
             },
           ),

@@ -94,7 +94,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
         backgroundColor: Colors.orange,
         title: Text("DASH BOARD"),
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(supplierId: widget.productName),
       body: StaggeredGridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 12.0,
