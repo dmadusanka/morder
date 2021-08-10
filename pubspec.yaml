@@ -28,6 +28,7 @@ dependencies:
   flutter_secure_storage: any
   animated_splash_screen: ^1.0.1+2
   get: ^3.15.0
+  badges: ^2.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -69,6 +70,8 @@ flutter:
     - assets/cookiecream.jpg
     - assets/cookieclassic.jpg
     - assets/cookiechoco.jpg
+    - assets/promo.png
+    - assets/favorite.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
