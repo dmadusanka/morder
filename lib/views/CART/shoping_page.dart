@@ -9,6 +9,7 @@ import 'package:MOrder/models/product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:badges/badges.dart';
 
 class ShoppingPage extends StatelessWidget {
   final String categoryId;
@@ -23,6 +24,27 @@ class ShoppingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: <Widget>[
+            Badge(
+              position: BadgePosition.topEnd(top: 0, end: 3),
+              animationDuration: Duration(milliseconds: 300),
+              animationType: BadgeAnimationType.slide,
+              badgeContent:GetX<CartController>(
+                builder: (controller) {
+                  return Text('${controller.itemCount}',
+                    style: TextStyle(fontSize: 15, color: Colors.white),);
+                },
+              ),
+              child: IconButton(
+                  icon: Icon(Icons.shopping_cart),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return MakeOder(supplierId);
+                    }));
+                  }
+              ),
+            )
+          ],
           title: GetX<CartController>(
             builder: (controller) {
               return Text("\$ ${controller.totalPrice}");
@@ -31,49 +53,6 @@ class ShoppingPage extends StatelessWidget {
           backgroundColor: Colors.orange,
         ),
         //bottomNavigationBar: BottomBar(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        floatingActionButton: FloatingActionButton.extended(
-          icon: Icon(
-            Icons.add_shopping_cart_outlined,
-          ),
-          label: GetX<CartController>(
-            builder: (controller) {
-              return Text('${controller.itemCount}',
-                  style: TextStyle(fontSize: 20));
-            },
-          ),
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return MakeOder(supplierId);
-            }));
-            // showDialog(
-            //   context: context,
-            //   builder: (_) => AlertDialog(
-            //     title: Container(
-            //       padding: EdgeInsets.only(left: 5, right: 5, top: 3, bottom: 3),
-            //       color: Colors.amber,
-            //       child: Center(
-            //         child: Text("Ordered Items"),
-            //       ),
-            //     ),
-            //     actions: [
-            //       Container(
-            //         width: 400,
-            //         child: Center(
-            //           child: CircularProgressIndicator(),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            //);
-            // Navigator.of(context)
-            //     .push(MaterialPageRoute(builder: (_) {
-            //   //return MainDashBoard(snapshot.data[index].id);
-            //   return makeOder();
-            // }));
-          },
-          backgroundColor: Colors.orange,
-        ),
         body: FutureBuilder<List<Product>>(
           future: getProduct(categoryId),
           builder: (context, data) {
@@ -93,98 +72,6 @@ class ShoppingPage extends StatelessWidget {
                       var baseURL =
                           'https://demo.msalesapp.com/msales/resources/getBlob/';
                       var imageURL = baseURL + imageIMAGE;
-
-                      // return Container(
-                      //   margin: EdgeInsets.symmetric(
-                      //     horizontal: 10.0,
-                      //     //vertical: 2.0,
-                      //   ),
-                      //   //color: Colors.amber,
-                      //   height: 120,
-                      //   child: Stack(
-                      //     alignment: Alignment.bottomCenter,
-                      //     children: [
-                      //       Container(
-                      //         height: 100,
-                      //         decoration: BoxDecoration(
-                      //           borderRadius: BorderRadius.circular(2),
-                      //           color: Colors.white54,
-                      //             border: Border.all(color: Colors.black12)
-                      //         ),
-                      //       ),
-                      //       Positioned(
-                      //         top: 0,
-                      //         right: 0,
-                      //         child:Container(
-                      //           padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      //           height: 100,
-                      //           //width: 200,
-                      //           child: Image.network(imageURL,),
-                      //         )
-                      //       ),
-                      //       Positioned(
-                      //           top: 85.0,
-                      //           //left: 50.0,
-                      //           right: -5,
-                      //           child:Container(
-                      //             padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      //             height: 30,
-                      //             //width: 200,
-                      //             //child: Text("TEMP")
-                      //             child: Container(
-                      //               padding: EdgeInsets.symmetric(
-                      //                 horizontal: 30,
-                      //                 vertical: 5.0,
-                      //               ),
-                      //               decoration: BoxDecoration(
-                      //                   color: Colors.orange,
-                      //                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(22), topLeft: Radius.circular(22))
-                      //               ),
-                      //               child: Text(
-                      //                 data.data[index].price.toString(),
-                      //                 style: TextStyle(
-                      //                   color: Colors.black,
-                      //                   fontSize: 18.0
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //           )
-                      //       ),
-                      //       Positioned(
-                      //         bottom: 0,
-                      //         left: 0,
-                      //         child: SizedBox(
-                      //           width: MediaQuery.of(context).size.width-210,
-                      //           height: 90,
-                      //           child: Column(
-                      //             crossAxisAlignment: CrossAxisAlignment.start,
-                      //            children: [
-                      //              Center(
-                      //                child: Text(data.data[index].productName, style: TextStyle(fontSize: 16.0, color: Colors.black),),
-                      //              ),
-                      //              Expanded(
-                      //                child: ChangeNumber((quantity){
-                      //                  data.data[index].quantity = quantity;
-                      //                }),
-                      //              ),
-                      //              ElevatedButton(
-                      //                onPressed: () {
-                      //                  cartControllert.addToCart(data.data[index]);
-                      //                },
-                      //                style: ElevatedButton.styleFrom(
-                      //                  primary: Colors.black12, // background
-                      //                  onPrimary: Colors.white, // foreground
-                      //                ),
-                      //                child: Text("Add To Cart"),
-                      //              ),
-                      //            ],
-                      //           ),
-                      //         )
-                      //       ),
-                      //     ],
-                      //   ),
-                      // );
-
                       return Card(
                         margin: EdgeInsets.all(12),
                         child: Padding(
@@ -244,7 +131,7 @@ class ShoppingPage extends StatelessWidget {
                                   cartControllert.addToCart(data.data[index]);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.black12, // background
+                                  primary: Colors.orangeAccent, // background
                                   onPrimary: Colors.white, // foreground
                                 ),
                                 child: Text("Add To Cart"),
@@ -272,7 +159,7 @@ class ShoppingPage extends StatelessWidget {
 
     var headers = {
       'Authorization':
-          'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyNzcxODIwOSwiZXhwIjoxNjI3ODA0NjA5LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.Wymcn_qdPQTCoRdy-89cvD5ASSb_SMsff8AJFd7EbvLmX7stOlVHpFmYtfNCZ5bfNF5wnFH3yiy6fmgirNp0EuYqSDBnwnZAeK-2-j9p2xhl4NKM-XAA255plzQMkRl46j27BfBso7GocEe0ma_vgJI5BdvdUvECdxnVRhe4wBtlJ8quXa2mojMvK0eCNy_bmQ-fIF2cK-ESIRCtPSQoYPRvUoXCk_N7Bp4xI_Onwi0918G_4H6fN07w399XAGB799cdurEOgGrUZW0dcA7vpfiH3GZPP3cXqTzlpkcOMj6RnX59eseo640z8C4mZG4tc8ejwHOHDXEqTAw8sjHsyA',
+          'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyODU3OTM3OSwiZXhwIjoxNjI4NjY1Nzc5LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.ZwOubU4BPm0NrjrjmYmHg1EN2nrpeEK6yw-f96jUZ66Mv2DCL6RziZtau0zVQkAEf-a4vVMOlBBCvMkaFM-w1DhVsTSMpd6oSWC2i1ke6ee2Pf_A1Iz9VkhuKvzXOrPz_X1A2vBVvORNdq6_RqQ6JJi3Ybq8YKRf8BwEwxtN1lRMymaSZdHfp0ifH92FVT5QefKgIPw9Nm4NuGEhYtgmwPoTi-JK04woCjOX0HLpJzf8D7pL1B2DdfbXHawd-Zu4aAHpZ5tJDy3-Jo2UITtmpWxiW4NIYgMa3C117Wdp5774Yr-wZVCwKXRXzVcrJp68hqOHvWYeVo6tlUok0WCl0Q',
       'Content-Type': 'application/json',
       'Cookie': 'JSESSIONID=B2E911507B6EE95774EC0246B10F5F5F',
       'BusinessId': 'partner-1'

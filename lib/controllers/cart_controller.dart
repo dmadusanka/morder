@@ -7,14 +7,20 @@ class CartController extends GetxController {
   double get totalPrice =>
       cartItems.fold(0, (sum, item) => sum + item.price * item.quantity);
 
+  removeProduct(Product product){
+    cartItems.remove(product);
+  }
+
+  clearItemCount(){
+    cartItems.clear();
+  }
+
   addToCart(Product product) {
-    print(itemCount);
     if (!cartItems.any((element) => element.id == product.id)) {
       cartItems.add(product);
       return;
     }
     var cartItem = cartItems.firstWhere((element) => element.id == product.id);
-    print(itemCount);
     if (cartItem != null) {
       if (cartItem.quantity != product.quantity) {
         cartItem.quantity = product.quantity;

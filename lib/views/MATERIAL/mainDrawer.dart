@@ -1,5 +1,6 @@
 import 'package:MOrder/views/CART/shoping_page.dart';
 import 'package:MOrder/views/AUTH/login.dart';
+import 'package:MOrder/views/MAKEORDERS/orderHistory.dart';
 import 'package:flutter/material.dart';
 import 'package:MOrder/views/ORDERS/todayOrders.dart';
 import 'package:MOrder/views/OUTSTANDING/outsStanding.dart';
@@ -9,6 +10,7 @@ import 'package:MOrder/views/MAKEORDERS/makeOrders.dart';
 import 'package:MOrder/views/PRODUCTS/productCategory.dart';
 import 'package:MOrder/views/CART/productRanges.dart';
 import 'package:MOrder/views/DASHBOARD/mainDashboard.dart';
+import 'package:MOrder/views/AUTH/supplier.dart';
 
 class MainDrawer extends StatelessWidget {
   final int supplierId;
@@ -57,50 +59,27 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
             onTap: () => {
-              // Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              //   //return mainDashBoard("cat");
-              //   return MainDashBoard(1);
-              // }))
-              Navigator.pop(context),
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                //return mainDashBoard("cat");
+                return MainDashBoard(1);
+              }))
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.speaker_notes_outlined),
-          //   title: Text("Loyalty Card", style: TextStyle(fontSize: 16),),
-          //   onTap: () => {
-          //     Navigator.of(context).push(MaterialPageRoute(
-          //         builder: (_){
-          //           return LoyatyCard();
-          //         }
-          //     ))
-          //   },
-          // ),
           ListTile(
             leading: Icon(
               Icons.speaker_notes_outlined,
               color: Colors.orange,
             ),
             title: Text(
-              "Orders",
+              "My Orders",
               style: TextStyle(fontSize: 16),
             ),
             onTap: () => {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                return MakeOder(supplierId);
+                return MakeOder(1);
               }))
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.sticky_note_2_outlined, color: Colors.orange,),
-          //   title: Text("Today's Oder History", style: TextStyle(fontSize: 16),),
-          //   onTap: () => {
-          //     Navigator.of(context).push(MaterialPageRoute(
-          //         builder: (_){
-          //           return todaysOrders();
-          //         }
-          //     ))
-          //   },
-          // ),
           ListTile(
             leading: Icon(
               Icons.monetization_on_sharp,
@@ -116,30 +95,6 @@ class MainDrawer extends StatelessWidget {
               }))
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.add_shopping_cart),
-          //   title: Text("Products",
-          //     style: TextStyle(fontSize: 16),),
-          //   onTap: () => {
-          //     Navigator.of(context).push(MaterialPageRoute(
-          //         builder: (_){
-          //           return mainCategory();
-          //         }
-          //     ))
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.add_shopping_cart),
-          //   title: Text("Products 2",
-          //     style: TextStyle(fontSize: 16),),
-          //   onTap: () => {
-          //     Navigator.of(context).push(MaterialPageRoute(
-          //         builder: (_){
-          //           return productRangers();
-          //         }
-          //     ))
-          //   },
-          // ),
           ListTile(
             leading: Icon(
               Icons.add_shopping_cart,
@@ -152,14 +107,43 @@ class MainDrawer extends StatelessWidget {
             onTap: () => {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                 //return ShoppingPage();
-                return AllProductRanges(supplierId);
+                return AllProductRanges(1);
+              }))
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.supervised_user_circle,
+              color: Colors.orange,
+            ),
+            title: Text("Supplier Details", style: TextStyle(fontSize: 16),),
+            onTap: () => {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_){
+                    return Supplier(1);
+                  }
+              ))
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.speaker_notes_outlined,
+              color: Colors.orange,
+            ),
+            title: Text(
+              "Order History",
+              style: TextStyle(fontSize: 16),
+            ),
+            onTap: () => {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                return OrderHistory();
               }))
             },
           ),
           ListTile(
             leading: Icon(
               Icons.logout,
-              color: Colors.red,
+              color: Colors.orange,
             ),
             title: Text(
               "Logout",
