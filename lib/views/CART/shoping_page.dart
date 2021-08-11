@@ -29,10 +29,12 @@ class ShoppingPage extends StatelessWidget {
               position: BadgePosition.topEnd(top: 0, end: 3),
               animationDuration: Duration(milliseconds: 300),
               animationType: BadgeAnimationType.slide,
-              badgeContent:GetX<CartController>(
+              badgeContent: GetX<CartController>(
                 builder: (controller) {
-                  return Text('${controller.itemCount}',
-                    style: TextStyle(fontSize: 15, color: Colors.white),);
+                  return Text(
+                    '${controller.itemCount}',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  );
                 },
               ),
               child: IconButton(
@@ -41,8 +43,7 @@ class ShoppingPage extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                       return MakeOder(supplierId);
                     }));
-                  }
-              ),
+                  }),
             )
           ],
           title: GetX<CartController>(

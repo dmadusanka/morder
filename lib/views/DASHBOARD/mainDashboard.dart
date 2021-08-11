@@ -124,64 +124,11 @@ class _MainDashBoardState extends State<MainDashBoard> {
         ],
       ),
       drawer: MainDrawer(),
-      body: StaggeredGridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        children: [
-          myItems(Icons.graphic_eq, "TARGET", 0XFFCD622B),
-          myItems(Icons.unarchive, "ACHIEVED", 0XFF1D852B),
-          myItems(Icons.account_balance_wallet, "BALANCE", 0XFF6D852B),
-          myItems(Icons.margin, "GP MARGIN", 0XFF7B622B),
-          Container(
-            // padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0), color: Colors.white),
-            // color: Colors.red,
-            child: charts.PieChart(
-              _seriesBarData,
-              animate: true,
-              animationDuration: Duration(seconds: 4),
-              behaviors: [
-                charts.DatumLegend(
-                    outsideJustification:
-                    charts.OutsideJustification.endDrawArea,
-                    horizontalFirst: false,
-                    desiredMaxRows: 2,
-                    cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
-                    entryTextStyle: charts.TextStyleSpec(
-                        color: charts.MaterialPalette.purple.shadeDefault,
-                        fontSize: 11))
-              ],
-              defaultRenderer: charts.ArcRendererConfig(
-                  arcWidth: 100,
-                  arcRendererDecorators: [
-                    charts.ArcLabelDecorator(
-                        labelPosition: charts.ArcLabelPosition.inside)
-                  ]),
-            ),
-          ),
-          myItems(Icons.account_balance_wallet, "BALANCE", 0XFF6D852B),
-          myItems(Icons.margin, "GP MARGIN", 0XFF7B622B),
-        ],
-        staggeredTiles: [
-          StaggeredTile.extent(1, 150.0),
-          StaggeredTile.extent(1, 150.0),
-          StaggeredTile.extent(1, 150.0),
-          StaggeredTile.extent(1, 150.0),
-          StaggeredTile.extent(2, 200.0),
-          StaggeredTile.extent(1, 150.0),
-          StaggeredTile.extent(1, 150.0),
-        ],
+      body: Container(
+        child: Center(
+          child: Text("No Top Selling Products to show"),
+        ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: Colors.orange,
-      //   child: Icon(Icons.fastfood),
-      // ),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      //bottomNavigationBar: BottomBar(),
     );
   }
 }

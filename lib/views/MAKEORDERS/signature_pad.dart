@@ -25,7 +25,7 @@ class SignaturePad extends StatefulWidget {
 
 class _SignaturePadState extends State<SignaturePad> {
   final StreamController<OrderState> _controller =
-  StreamController<OrderState>.broadcast();
+      StreamController<OrderState>.broadcast();
   final cartControllert = Get.put(CartController());
 
   @override
@@ -37,10 +37,12 @@ class _SignaturePadState extends State<SignaturePad> {
             position: BadgePosition.topEnd(top: 0, end: 3),
             animationDuration: Duration(milliseconds: 300),
             animationType: BadgeAnimationType.slide,
-            badgeContent:GetX<CartController>(
+            badgeContent: GetX<CartController>(
               builder: (controller) {
-                return Text('${controller.itemCount}',
-                  style: TextStyle(fontSize: 15, color: Colors.white),);
+                return Text(
+                  '${controller.itemCount}',
+                  style: TextStyle(fontSize: 15, color: Colors.white),
+                );
               },
             ),
             child: IconButton(
@@ -49,8 +51,7 @@ class _SignaturePadState extends State<SignaturePad> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                     return MakeOder(1);
                   }));
-                }
-            ),
+                }),
           ),
         ],
         title: GetX<CartController>(
@@ -66,10 +67,9 @@ class _SignaturePadState extends State<SignaturePad> {
           Container(
             margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
             child: Center(
-              child: Text("Signature Required",
-                style: TextStyle(
-                    fontSize: 20.0
-                ),
+              child: Text(
+                "Signature Required",
+                style: TextStyle(fontSize: 20.0),
               ),
             ),
           ),
@@ -132,7 +132,7 @@ class _SignaturePadState extends State<SignaturePad> {
     _controller.add(OrderState.Loading);
     var headers = {
       'Authorization':
-      'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyODU3OTM3OSwiZXhwIjoxNjI4NjY1Nzc5LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.ZwOubU4BPm0NrjrjmYmHg1EN2nrpeEK6yw-f96jUZ66Mv2DCL6RziZtau0zVQkAEf-a4vVMOlBBCvMkaFM-w1DhVsTSMpd6oSWC2i1ke6ee2Pf_A1Iz9VkhuKvzXOrPz_X1A2vBVvORNdq6_RqQ6JJi3Ybq8YKRf8BwEwxtN1lRMymaSZdHfp0ifH92FVT5QefKgIPw9Nm4NuGEhYtgmwPoTi-JK04woCjOX0HLpJzf8D7pL1B2DdfbXHawd-Zu4aAHpZ5tJDy3-Jo2UITtmpWxiW4NIYgMa3C117Wdp5774Yr-wZVCwKXRXzVcrJp68hqOHvWYeVo6tlUok0WCl0Q',
+          'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkJEU2pBYnRPYWhFMEQtSjFmTXZ6MyJ9.eyJodHRwczovL3d3dy5tc2FsZXMuY29tL2VtYWlsIjoiZHVsYW5qYW5zZWpAZ21haWwuY29tIiwiaHR0cHM6Ly93d3cubXNhbGVzLmNvbS9lbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDYwNzAwYzgyMGE0YjU1MDA2OTJkYjgyOSIsImF1ZCI6WyJodHRwOi8vcHVibGljLmFwaS5tc2FsZXNhcHAuY29tIiwiaHR0cHM6Ly9tc2FsZXMuYXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTYyODU3OTM3OSwiZXhwIjoxNjI4NjY1Nzc5LCJhenAiOiJCN0ZObXV2ZVRjZG4zZWthcVQ3eU1PZUs0Szgwd1FpOCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.ZwOubU4BPm0NrjrjmYmHg1EN2nrpeEK6yw-f96jUZ66Mv2DCL6RziZtau0zVQkAEf-a4vVMOlBBCvMkaFM-w1DhVsTSMpd6oSWC2i1ke6ee2Pf_A1Iz9VkhuKvzXOrPz_X1A2vBVvORNdq6_RqQ6JJi3Ybq8YKRf8BwEwxtN1lRMymaSZdHfp0ifH92FVT5QefKgIPw9Nm4NuGEhYtgmwPoTi-JK04woCjOX0HLpJzf8D7pL1B2DdfbXHawd-Zu4aAHpZ5tJDy3-Jo2UITtmpWxiW4NIYgMa3C117Wdp5774Yr-wZVCwKXRXzVcrJp68hqOHvWYeVo6tlUok0WCl0Q',
       'Content-Type': 'application/json',
       'Cookie': 'JSESSIONID=B2E911507B6EE95774EC0246B10F5F5F',
       'BusinessId': 'partner-1'
@@ -151,14 +151,14 @@ class _SignaturePadState extends State<SignaturePad> {
       orderTotal: widget.totalPrice + (widget.totalPrice / 10),
       items: widget.cartItems
           .map<Items>((e) => Items(
-          productCode: e.id,
-          description: e.productDescription,
-          quantity: e.quantity,
-          unitPrice: e.price,
-          taxRate: 10,
-          taxCode: 'GST',
-          subTotalPrice: (e.price * e.quantity),
-          subTotalTax: (e.price * e.quantity) / 10))
+              productCode: e.id,
+              description: e.productDescription,
+              quantity: e.quantity,
+              unitPrice: e.price,
+              taxRate: 10,
+              taxCode: 'GST',
+              subTotalPrice: (e.price * e.quantity),
+              subTotalTax: (e.price * e.quantity) / 10))
           .toList(),
     );
 
